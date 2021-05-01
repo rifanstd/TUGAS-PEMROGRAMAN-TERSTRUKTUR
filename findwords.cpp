@@ -107,3 +107,30 @@ bool searchVertical(char *getWord){
 
     return status;
 }
+
+// fungsi mencari kata secara horizontal
+bool searchHorizontal(char *getWord){
+    // kondisi status awal
+    bool status = false; 
+
+    for (int i = 0; i < rows; i++){
+
+        // mencari apakah kata yang dicari itu ada, dari kiri-kanan
+        if (strstr(words[i],getWord)){
+            status = true;
+            break;    
+        }
+        
+        if (i == rows-1){
+            // membalik kata/word
+            char *reverseWord = reverse(getWord);
+            for (int i = 0; i < rows; i++){
+                // mencari kata yang sudah dibalik, atau mencari kata dari kanan-kiri
+                if (strstr(words[i],reverseWord)){
+                    status = true;
+                    break;
+                }
+            }
+        }
+    }
+}
