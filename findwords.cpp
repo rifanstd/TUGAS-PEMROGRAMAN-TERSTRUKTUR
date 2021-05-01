@@ -76,3 +76,34 @@ char *reverse(char *getWord){
 
     return reverseWord;
 }
+
+
+// fungsi mencari kata secara vertikal
+bool searchVertical(char *getWord){
+    // kondisi status awal
+    bool status = false;
+
+    for (int i = 0; i < cols-1; i++){
+        // memanggil fungsi untuk menyimpan karakter yang terdapat di kolom tertentu setiap baris
+        char *chrCol = getWordVertical(i);
+        // lalu mencari kata yang dicari ada atau tidak
+        if (strstr(chrCol,getWord)){
+            status = true;
+            break;
+        }
+
+        if (i == cols-2){
+            // membalik kata/word
+            char *reverseWord = reverse(getWord);
+            for (int i = 0; i < cols-1; i++){
+                // mencari kata yang sudah dibalik, atau mencari kata dari kanan-kiri
+                if (strstr(chrCol,reverseWord)){
+                    status = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    return status;
+}
