@@ -30,8 +30,11 @@ const int cols = 16, rows = 15;
                                 "pdcrzmsngrdnrpz",
                                 "ohnkzwaterjgtra"};
 
+
+char getWordCol[cols]; // variabel menampung karakter pada setiap kolom tertentu 
+
 // Prototype
-char *getWordVertical(int);
+char *getWordVertical(int getIndex);
 char *reverse(char *);
 bool searchVertical(char *);
 bool searchHorizontal(char *);
@@ -54,3 +57,13 @@ int main()
 }
 
 // fungsi 
+
+// fungsi menyusun karakter yang ada di kolom tertentu pada setiap baris
+char *getWordVertical(int getIndex){
+    for (int i = 0; i < rows; i++){
+        // menyimpan karakter yang terdapat di kolom tertentu pada setiap baris
+        getWordCol[i] = words[i][getIndex];
+    }
+
+    return getWordCol;
+}
