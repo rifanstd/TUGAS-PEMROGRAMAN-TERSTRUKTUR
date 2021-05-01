@@ -67,3 +67,12 @@ char *getWordVertical(int getIndex){
 
     return getWordCol;
 }
+
+
+// fungsi membalik kata
+char *reverse(char *getWord){
+    // membalik kata dengan fungsi strrev()
+    char *reverseWord = strrev(getWord);
+
+    return reverseWord;
+}
