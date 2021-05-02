@@ -5,6 +5,8 @@ Kelompok 5
 2. Rifan Setiadi - 2017051019
 3. Diva Amartya Syafitri - 2017051088
 
+Link Github : https://github.com/rifanstd/TUGAS-PEMROGRAMAN-TERSTRUKTUR.git
+
 */
 
 
