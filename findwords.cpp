@@ -29,9 +29,7 @@ const int cols = 16, rows = 15;
                                 "mosgzczetdbooto",
                                 "pdcrzmsngrdnrpz",
                                 "ohnkzwaterjgtra"};
-
-
-char getWordCol[cols]; // variabel menampung karakter pada setiap kolom tertentu 
+ 
 
 // Prototype
 char *getWordVertical(int getIndex);
@@ -60,9 +58,10 @@ int main()
 
 // fungsi menyusun karakter yang ada di kolom tertentu pada setiap baris
 char *getWordVertical(int getIndex){
+    static char getWordCol[cols]; // variabel menampung karakter pada setiap kolom tertentu
     for (int i = 0; i < rows; i++){
         // menyimpan karakter yang terdapat di kolom tertentu pada setiap baris
-        getWordCol[i] = words[i][getIndex];
+        getWordCol[i] = *(*(words+i)+getIndex);
     }
 
     return getWordCol;
@@ -74,7 +73,7 @@ char *reverse(char *getWord){
     static char getCharacter[cols];
     int index = 0;
     for (int i = (strlen(getWord)-1); i >= 0; i--){
-        getCharacter[index] = getWord[i];
+        getCharacter[index] = *(getWord+i);
         index++;
     }
 
@@ -91,19 +90,9 @@ bool searchVertical(char *getWord){
         // memanggil fungsi untuk menyimpan karakter yang terdapat di kolom tertentu setiap baris
         char *chrCol = getWordVertical(i);
         // lalu mencari kata yang dicari ada atau tidak
-        if (strstr(chrCol,getWord)){
+        if (strstr(chrCol,getWord) || strstr(reverse(chrCol),getWord)){
             status = true;
             break;
-        }
-
-        if (i == cols-2){
-            for (int i = 0; i < cols-1; i++){
-                // mencari kata pada susunan kata words[i] yang sudah dibalik
-                if (strstr(reverse(chrCol),getWord)){
-                    status = true;
-                    break;
-                }
-            }
         }
     }
 
@@ -118,19 +107,9 @@ bool searchHorizontal(char *getWord){
     for (int i = 0; i < rows; i++){
 
         // mencari apakah kata yang dicari itu ada
-        if (strstr(words[i],getWord)){
+        if (strstr(words[i],getWord) || strstr(reverse(words[i]),getWord)){
             status = true;
             break;    
-        }
-        
-        if (i == rows-1){
-            for (int i = 0; i < rows; i++){
-                // mencari kata pada susunan kata words[i] yang sudah dibalik
-                if (strstr(reverse(words[i]),getWord)){
-                    status = true;
-                    break;
-                }
-            }
         }
     }
     return status;
